@@ -25,7 +25,7 @@ https://github.com/thiagosantos346/APA-LISTA-1/blob/db328629e8af1dd87677ecbcccf3
 * Já esta é responsável por remover esse item do vetor para evitar que ele seja comparado novamente:
 https://github.com/thiagosantos346/APA-LISTA-1/blob/db328629e8af1dd87677ecbcccf32dce2aaf6917/ex1/main.c#L38
 
-https://github.com/thiagosantos346/APA-LISTA-1/blob/db328629e8af1dd87677ecbcccf32dce2aaf6917/ex1/main.c#L242-L250
+![L242-L250)](https://github.com/thiagosantos346/APA-LISTA-1/blob/db328629e8af1dd87677ecbcccf32dce2aaf6917/ex1/main.c#L242-L250)
 
 * Note que ambas  contém laços e assim temos a formula de n(n+n) = 2n+2n = 4n² , que tem limite a assintótico igual n².
 
@@ -34,8 +34,8 @@ https://github.com/thiagosantos346/APA-LISTA-1/blob/db328629e8af1dd87677ecbcccf3
 ___
 ## Análise de Complexidade para o SelectionSort aprimorado
 
-![Heep Tree](ex1/static/cost-of-building-a-heap.png)
+![Heep Tree](https://raw.githubusercontent.com/thiagosantos346/APA-LISTA-1/main/ex1/static/cost-of-building-a-heap.png)
 
-![Implicit representation of binary tree](ex1/static/implicit-representation-of-binary-tree.png)
+![Implicit representation of binary tree](https://raw.githubusercontent.com/thiagosantos346/APA-LISTA-1/main/ex1/static/implicit-representation-of-binary-tree.png)
 
-![Cost of building a heap](ex1/static/cost-of-building-a-heap.png)
+![Cost of building a heap](https://raw.githubusercontent.com/thiagosantos346/APA-LISTA-1/main/ex1/static/cost-of-building-a-heap.png)
