@@ -33,3 +33,9 @@ https://github.com/thiagosantos346/APA-LISTA-1/blob/db328629e8af1dd87677ecbcccf3
 
 ___
 ## Análise de Complexidade para o SelectionSort aprimorado
+
+![Heep Tree](ex1/static/cost-of-building-a-heap.png)
+
+![Implicit representation of binary tree](ex1/static/implicit-representation-of-binary-tree.png)
+
+![Cost of building a heap](ex1/static/cost-of-building-a-heap.png)
