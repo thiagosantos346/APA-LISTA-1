@@ -14,7 +14,7 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
-/* Recebe n e imprime todas as partições de n em ordem lex */
+/*Recebe o numero e imprime todas as partições de n em ordem lex.*/
 void preparar_particao_inteiro(int numero) {
     int indicador, numero_adicionado, *particao;
     /* Prepara um vetor p = (n, 0, ..., 0) de dimensão n e
@@ -27,6 +27,7 @@ void preparar_particao_inteiro(int numero) {
     particao_numero(particao, indicador, numero_adicionado, numero);
 }
 
+/* Devolve o índice k mais a direita do vetor p satisfazendo p[k] > 1, sendo p a particao e k o indicador. */
 void particao_numero(int *particao, int indicador, int numero_adicionado, int numero) {
     if (numero_adicionado < numero) {
         imprimir_particao(numero_adicionado, particao);
