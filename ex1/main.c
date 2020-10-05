@@ -103,7 +103,7 @@ int pq_young_child(int n)
 int pq_insert(priority_queue *q, int x)
 {
     if (q->n >= PQ_SIZE)
-        printf(""); //Warning: priority queue overflow insert x=%d\n, x
+        printf("."); //Warning: priority queue overflow insert x=%d\n, x
     else
     {
         q->n = (q->n) + 1;
@@ -148,7 +148,7 @@ int extract_min(priority_queue *q, int *operations)
     /* minimum value */
 
     if (q->n <= 0)
-        printf(""); //Warning: empty priority queue.\n
+        printf("."); //Warning: empty priority queue.\n
     else
     {
         min = q->q[1];
