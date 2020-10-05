@@ -4,8 +4,8 @@
 int main(){
 
     /*Para este programa utilizaremos as seguintes variaveis para controlar os valores referentes as coodenadas geográficas
-      coordX para o eixo X, e coordY para o eixo y do plano cartesiano.*/
-
+      coordX para o eixo X, e coordY para o eixo y do plano cartesiano.*/   
+    
     int coordX=1;
     int coordY=0;
     int valor=0;
@@ -144,7 +144,7 @@ int main(){
         }
         printf("Coordenadas X: %d e Y: %d \n",coordX,coordY);
         //NO fim é dado as coordenadas para o ponto no plano cartesiano
-
+        //Os testes de entradas para este programa fora feito apenas com numero pequenos , nao realizamos testes para números muitos grandes, logo pode ocorrer falhas.
 
 }
 
