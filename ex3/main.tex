@@ -1,0 +1,195 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,left=3cm,right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm,amsfonts,amstext}
+\usepackage{amsmath}
+\usepackage{float}
+
+
+\title{Análise e Projeto de Algoritmos}
+
+\date{05/10/2020}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+% \maketitle
+\section*{Questão 03}
+Seja a espiral quadrada como apresentada abaixo. Faça um programa que apresente as coordenadas $(x, y)$s de um dado ponto n fornecido na entrada. Apresente três algoritmos distintos que executam no pior caso em:
+\begin{enumerate}
+    \item[a.] $O(1)$
+    \item[b.] $O(n)$
+\end{enumerate}
+
+ \begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.7]{espiral.png}
+    \label{espiral}
+\end{figure}
+
+\section{O(n)}
+
+    \subsection{}
+       Para construir a espiral quadrada, é preciso atentar-se a duas informações: a orientação (se ela está se movimentando pelo eixo X ou pelo eixo Y) e a operação (se ela está crescendo ou decrescendo no eixo). A orientação muda toda vez que o lado supera o último lado do eixo. A operação é definida da seguinte forma: caso o tamanho do lado seja par ela cresce no eixo Y, e caso seja ímpar cresce em X. O tamanho do lado cresce em todo eixo X. 
+       
+       Assim, a primeira implementação baseou-se em quatro variáveis de controle:
+        \begin{itemize}
+        	\item[-] orientation: -1 para o eixo X e 1 para o eixo Y;
+        	\item[-] movementSign: -1 para lados com tamanho par e 1 para lados com tamanho ímpar;
+        	\item[-] side: começa em 1 e é incrementado toda vez que a orientação passa para o eixo Y;
+        	\item[-] sidePosition: variável incremental da posição no lado, começando no 0.
+    	\end{itemize}
+    	
+        Logo, o algoritmo funciona da seguinte forma:
+        \begin{itemize}
+    	    \item[-] As coordenadas X e Y do ponto começam na origem (0,0), a orientação é positiva (deve-se começar operando sobre o eixo X) e o tamanho do lado é 1;
+        	\item[-] Após realizar a operação sobre as coordenadas, o sidePosition é incrementado;
+        	\item[-] Como o sidePosition alcança o side, ele é zerado e a orientação é trocada (passa-se a operar sobre Y). Como a orientação é do eixo Y, não é preciso incrementar o side;
+        	\item[-] A orientação passa a ser positiva, portanto opera-se sobre o eixo Y. A operação continua positiva, portanto a coordenada Y é incrementada;
+        	\item[-] sidePosition é incrementado;
+        	\item[-] sidePosition alcança o tamanho do lado e é zerado e a orientação deve ser trocada para o eixo X;
+        	\item[-] Como voltamos ao eixo X, devemos incrementar o tamanho do Lado e trocar a operação, que como o eixo é par deve ser negativo;
+        	\item[-] O ciclo continua até alcançar n.
+    	\end{itemize}
+        Dessa maneira, para qualquer ponto $n$, iremos executar uma quantidade constante de instruções $n$ vezes (calcular as coordenadas desde a origem, ponto 0, até o ponto $n$). Portanto esse algoritmo é O(n).
+    
+    
+    \subsection{}
+        Pensando no comportamento do crescimento da espiral em relação ao plano cartesiano, podemos dividir a espiral em 4 lados: o primeiro se refere às retas horizontais (eixo X) que estão abaixo do eixo X; o segundo se refere às retas verticais (eixo Y) que estão a direita do eixo Y; o terceiro se refere às retas horizontais (eixo X) que estão acima do eixo X; e o quarto se refere às retas verticais (eixo Y) que estão a esquerda do eixo Y.
+        Sempre que estiver nos lados 1 e 2 deve-se incrementar os valores da coordenada X e Y, respectivamente. Da mesma forma, nos lados 3 e 4 decrementa-se os valores da coordenada X e Y, respectivamente. O tamanho do lado cresce em todo eixo X, ou seja, a cada dois segmentos de reta do mesmo tamanho.
+        
+        Assim, a segunda implementação baseou-se em quatro variáveis de controle:
+        \begin{itemize}
+        	\item[-] vertices: quantidade e vértices;
+        	\item[-] index: índice da proxima curva;
+        	\item[-] segment: tamanho do segmento atual;
+        	\item[-] amountSegment: quantidade de segmentos do mesmo tamanho.
+    	\end{itemize}
+    	
+        Logo, o algoritmo funciona da seguinte forma:
+        \begin{itemize}
+    	    \item[-] As coordenadas X e Y do ponto começam na origem (0,0), a quantidade de vértices é 0, o índice da próxima curva 1, índice da próxima curva 1, tamanho do segmento atual 1 e a quantidade de segmentos do mesmo tamanho 0;
+        	\item[-] Calcula-se a direção do segmento (lado da espiral;
+        	\item[-] De acordo com o lado incrementa ou decrementa X ou Y;
+        	\item[-] Se for alcançado um ponto que é uma curva, a quantidade de segmentos e de vértices é incrementada, e o índice da próxima curva é atualizado;
+        	\item[-] A cada dois segmentos do mesmo tamanho, a quantidade de segmentos aumenta e o amountSegment volta a ser 0.
+        	\item[-] O ciclo continua até alcançar n.
+    	\end{itemize}
+        De maneira similar ao primeiro algoritmo, para qualquer ponto $n$ iremos executar uma quantidade constante de instruções $n$ vezes (calcular as coordenadas desde a origem, ponto 0, até o ponto $n$). Portanto esse algoritmo é O(n).
+    
+    % \subsection{}
+    %     <DESCRIÇÃO>
+        
+    %     Assim, a terceira implementação baseou-se em <QUANTIDADE> variáveis de controle:
+    %     \begin{itemize}
+    %     	\item[-] 
+    % 	\end{itemize}
+    	
+    %     Logo, o algoritmo funciona da seguinte forma:
+    %     \begin{itemize}
+    %     	\item[-] 
+    % 	\end{itemize}
+    %     Dessa maneira, ....
+
+\section{O(1)}
+    \subsection{}
+        Podemos encontrar que dado um ponto $N$, se $N$ é quadrado perfeito então suas coordenadas podem ser descritas da seguinte maneira: 
+        
+        Se $N$ é par:
+        $$(\frac{\sqrt{N}}{-2}, \frac{\sqrt{N}}{2})$$
+        
+        Se $N$ é ímpar:
+        $$(\frac{\sqrt{N} + 1}{2}, \frac{\sqrt{N} - 1}{-2})$$
+        
+        Entre um quadrado perfeito ímpar e um par, opera-se positivamente sobre as coordenadas, e entre um quadrado perfeito par e um ímpar, opera-se negativamente sobre as coordenadas. Um quadrado perfeito sempre irá marcar uma curva na espiral, então dado a posição relativa de $n$ sobre o quadrado perfeito, iremos determinar o eixo de movimento (X ou Y).
+
+        
+        Assim, a primeira implementação baseou-se em quatro variáveis de controle:
+        \begin{itemize}
+        	\item[-] nearestPS: quadrado perfeito mais próximo;
+        	\item[-] distance: diferença do ponto $n$ ao quadrado perfeito mais próximo;
+        	\item[-] movementSign: -1 para os nearestPS pares e 1 para os nearestPS ímpares;
+        	\item[-] movementAxis: eixo de movimento;
+    	\end{itemize}
+    	
+        Logo, o algoritmo funciona da seguinte forma:
+        \begin{itemize}
+        	\item[-] Calcula-se o quadrado perfeito mais próximo de $n$;
+        	\item[-] Calcula-se as coordenadas do quadrado perfeito mais pŕoximo;
+        	\item[-] Calcula-se a distância de $n$ até o quadrao perfeito mais próximo;
+        	\item[-] Se  $n > nearestPS$ então o eixo de movimento é Y, caso contrário, X.
+        	\item[-] Se o nearesPs é par então o sinal de movimento é negativo, caso contrário, positivo;
+        	\item[-] Calcula-se o deslocamento das coordenadas do quadrado perfeito mais próximo até $n$, onde $coord = coord + (distance * movementSign)$ de acordo com o eixo de movimento determinado;
+    	\end{itemize}
+        Dessa maneira, independente do tamanho da entrada $n$ iremos executar uma quantidade constante de instruções. Portanto esse algoritmo é O(1).
+        
+    \subsection{}
+        A segunda implementação baseou-se no calculo de posição baseado na quantidade de voltas na espiral, ou seja, a quantidade de quadrados desenhados até o ponto $n$, e na quantidade de pontos que formam um quadrado ou uma volta.
+        
+        Assim, a segunda implementação baseou-se em duas variáveis de controle:
+        \begin{itemize}
+        	\item[-] squares: quantidade de voltas na espiral (quantidade e quadrados);
+        	\item[-] vertices: quantidades de pontos que formam a espiral, sendo que o primeiro quadrado é formado por 8 pontos;
+    	\end{itemize}
+    	
+        Logo, o algoritmo funciona da seguinte forma:
+        \begin{itemize}
+        	\item[-] Calcula-se a quantidade de voltas na espiral;
+        	\item[-] Calcula-se a quantidade de pontos na espiral, dado $vertices = 8 * sqaures$;
+        	\item[-] $quad4 = ((8 + vertices) * squares) / 2$;
+        	\item[-] $quad1 = quad4 - (vertices * 3) / 4$;
+        	\item[-] $quad2 = quad4 - (vertices / 2)$;
+        	\item[-] $quad3 = quad4 - (vertices / 4)$;
+        	\item[-] Se $n$ é igual a $quad1$ então o ponto se encontra no primeiro quadrante do plano cartesiano, e suas coordenadas são iguais a quantidade de quadrados da espiral;
+        	\item[-] Se $n$ é igual a $quad2$ então o ponto se encontra no segundo quadrante do plano cartesiano, e suas coordenadas são $(-squares, squares)$;
+        	\item[-] Se $n$ é igual a $quad3$ então o ponto se encontra no terceiro quadrante do plano cartesiano, e suas coordenadas são $(-squares, -squares)$;
+        	\item[-] Se $n$ é igual a $quad4$ então o ponto se encontra no quarto quadrante do plano cartesiano, e suas coordenadas são$(squares, -squares)$;
+        	\item[-] Se $n$ é menor do que $quad1$, suas coordenadas são $(squares, squares - quad1 - n)$;
+        	\item[-] Se $n$ é menor do que $quad2$, suas coordenadas são $(quad2 - n - squares, squares)$;
+        	\item[-] Se $n$ é menor do que $quad3$, suas coordenadas são $(-squares, quad3 - n - squares)$;
+        	\item[-] Se $n$ é menor do que $quad4$, suas coordenadas são $(squares - quad4 - n, -squares)$;
+        	
+        	
+        	
+        	
+    	\end{itemize}
+        Dessa maneira, independente do tamanho da entrada $n$ iremos executar uma quantidade constante de instruções. Portanto esse algoritmo é O(1).
+        
+    \subsection{}
+        De maneira similar ao primeiro algoritmo, podemos encontrar que dado um ponto $N$, se $N$ é quadrado perfeito então suas coordenadas podem ser descritas da seguinte maneira: 
+        
+        Se $N$ é par:
+        $$(\frac{\sqrt{N}}{-2}, \frac{\sqrt{N}}{2})$$
+        
+        Se $N$ é ímpar:
+        $$(\frac{\sqrt{N} + 1}{2}, \frac{\sqrt{N} - 1}{-2})$$
+        
+        Todos os quadrados perfeitos se encontram na diagonal principal. Caso não seja um quadrado perfeito basta calcular a distância para o quadrado perfeito mais próximo, onde que entre um quadrado perfeito ímpar e um par, opera-se positivamente sobre as coordenadas, e entre um quadrado perfeito par e um ímpar, opera-se negativamente sobre as coordenadas.
+
+        
+        Assim, a terceira implementação baseou-se em quatro variáveis de controle:
+        \begin{itemize}
+        	\item[-] nearestPS: quadrado perfeito mais próximo;
+        	\item[-] distance: diferença do ponto $n$ ao quadrado perfeito mais próximo;
+    	\end{itemize}
+    	
+        Logo, o algoritmo funciona da seguinte forma:
+        \begin{itemize}
+        	\item[-] Obtenha o quadrado perfeito mais próximo de $n$;
+        	\item[-] Se $n$ for quadrado perfeito calcule as suas coordenadas;
+        	\item[-] Se $n$ não for quadrado perfeito, calcule a distância de $n$ até o quadrado perfeito mais próximo;
+        	\item[-] Se o quadrado perfeito mais próximo por par, decrementa o valor da coordenada de Y se a distância for positiva, ou decrementa o valor da coordenada de X se a distância for negativa;
+        	\item[-] Se o quadrado perfeito mais próximo por ímpar, incrementa o valor da coordenada de Y se a distância for positiva, ou incrementa o valor da coordenada de X se a distância for negativa;
+        	
+    	\end{itemize}
+        Dessa maneira, independente do tamanho da entrada $n$ iremos executar uma quantidade constante de instruções. Portanto esse algoritmo é O(1).
+
+\end{document}
