@@ -4,17 +4,18 @@
 int indicador_direita(int numero_adicionado, int *particao);
 int encurtar_particao(int indicador, int numero_adicionado, int *particao);
 void imprimir_particao(int numero_adicionado, int *particao);
-void particao_inteiro(int numero);
+void preparar_particao_inteiro(int numero);
+void particao_numero(int *particao, int indicador, int numero_adicionado, int numero);
 
 int main(void) {
     int numero;
     scanf("%d", &numero);
-    particao_inteiro(numero);
+    preparar_particao_inteiro(numero);
     return EXIT_SUCCESS;
 }
 
-/* Recebe n e imprime todas as partições de n em ordem lex */
-void particao_inteiro(int numero) {
+/*Recebe o numero e imprime todas as partições de n em ordem lex.*/
+void preparar_particao_inteiro(int numero) {
     int indicador, numero_adicionado, *particao;
     /* Prepara um vetor p = (n, 0, ..., 0) de dimensão n e
     z como sendo o primeiro índice tal que p[z] é nulo */
@@ -23,7 +24,12 @@ void particao_inteiro(int numero) {
     for (indicador = 1; indicador < numero; indicador++) { particao[indicador] = 0; }
     numero_adicionado = 1;
     /* Enquanto existe uma entrada nula no vetor */
-    while (numero_adicionado < numero) {
+    particao_numero(particao, indicador, numero_adicionado, numero);
+}
+
+/* Devolve o índice k mais a direita do vetor p satisfazendo p[k] > 1, sendo p a particao e k o indicador. */
+void particao_numero(int *particao, int indicador, int numero_adicionado, int numero) {
+    if (numero_adicionado < numero) {
         imprimir_particao(numero_adicionado, particao);
         indicador = indicador_direita(numero_adicionado, particao);
         if (particao[indicador] == 2 || indicador == numero_adicionado-1) {
@@ -36,9 +42,13 @@ void particao_inteiro(int numero) {
         }
 
         numero_adicionado = encurtar_particao(indicador, numero_adicionado, particao);
+
+        particao_numero(particao, indicador, numero_adicionado, numero);
     }
-    imprimir_particao(numero, particao);
-    free(particao);
+    else {
+        imprimir_particao(numero, particao);
+        free(particao);
+    }
 }
 
 /* Devolve o índice k mais a direita do vetor p satisfazendo p[k] > 1, sendo p a particao e k o indicador. */
